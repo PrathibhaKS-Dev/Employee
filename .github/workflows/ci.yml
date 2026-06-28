@@ -7,7 +7,6 @@ on:
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
 
     steps:
@@ -24,8 +23,8 @@ jobs:
         run: mvn clean package -DskipTests
 
       - name: Login to Docker Hub
-      - run: |
-      - echo "${{ secrets.DOCKER_TOKEN }}" | docker login -u "${{ secrets.DOCKER_USERNAME }}" --password-stdin
+        run: |
+          echo "${{ secrets.DOCKER_TOKEN }}" | docker login -u "${{ secrets.DOCKER_USERNAME }}" --password-stdin
 
       - name: Build Docker Image
         run: docker build -t prathibhaks14/employee-app:latest .
