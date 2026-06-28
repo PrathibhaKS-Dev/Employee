@@ -22,13 +22,15 @@ jobs:
       - name: Build with Maven
         run: mvn clean package -DskipTests
 
-      - name: Check Secrets
+      - name: Debug Secrets
         env:
           DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
           DOCKER_TOKEN: ${{ secrets.DOCKER_TOKEN }}
         run: |
+          echo "Username: [$DOCKER_USERNAME]"
           echo "Username length: ${#DOCKER_USERNAME}"
           echo "Token length: ${#DOCKER_TOKEN}"
+          echo "Token first 5 chars: ${DOCKER_TOKEN:0:5}"
 
       - name: Login to Docker Hub
         run: |
